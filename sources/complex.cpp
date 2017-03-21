@@ -1,3 +1,5 @@
+#include "complexh.hpp"
+
 void complex::Print(ostream&out) const {
 
 	out << de << " + " << mn << "i" << endl;
