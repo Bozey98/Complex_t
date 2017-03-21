@@ -1,149 +1,113 @@
-#include "matrix.hpp"
+void complex::Print(ostream&out) const {
 
-Matrix::Matrix(int length) {
-	row = length;
-	col = length;
+	out << de << " + " << mn << "i" << endl;
 
-	mas = new int*[row];
-	for (int i = 0; i < row; i++) {
-		mas[i] = new int[col];
-		for (int j = 0; j < col; j++) {
-			mas[i][j] = 0;
-		}
-	}
 }
 
-Matrix::Matrix(int r, int c) {
-	row = r;
-	col = c;
+ complex complex::add(complex const & met1) const {
 
-	mas = new int*[row];
-	for (int i = 0; i < row; i++) {
-		mas[i] = new int[col];
-		for (int j = 0; j < col; j++) {
-			mas[i][j] = 0;
-		}
-	}
-}
-
-Matrix::~Matrix() {
-	for (int i = 0; i < row; i++) {
-		delete[] mas[i];
-	}
-
-	delete[] mas;
-}
-
-Matrix::Matrix(const Matrix&a) {
-	row = a.row;
-	col = a.col;
-
-	mas = new int*[row];
-	for (int i = 0; i < row; i++) {
-		mas[i] = new int[col];
-		for (int j = 0; j < col; j++) {
-			mas[i][j] = a.mas[i][j];
-		}
-	}
-}
-
-void Matrix::fill( const char*file) {
-	ifstream fin1(file);
-	for (int i = 0; i < row; i++) {
-		for (int j = 0; j < col; j++) {
-			fin1 >> mas[i][j];
-		}
-	}
-}
-
-void Matrix::show() const {
 	
-	for (int i = 0; i < row; i++) {
-		for (int j = 0; j < col; j++) {
-			cout << mas[i][j] << " ";
-		}
-		cout << endl;
-	}
-	cout << endl;
+	return complex(de+met1.de, mn+met1.mn);
 }
 
-Matrix Matrix::operator+(const Matrix& a) const {
+complex complex::sub(complex const & met2) const {
+	
 
-	Matrix help(row, col);
+	return complex(de-met2.de, mn-met2.mn);
+
+}
+
+complex complex::Proizv(int met3) const {
 
 
-	for (int i = 0; i < row; i++) {
-		for (int j = 0; j < col; j++) {
-			help.mas[i][j] = mas[i][j] + a.mas[i][j];
-		}
-	}
+	return complex(de*met3, mn*met3);
+
+}
+
+
+complex complex::Chast(int met4) const{
+
+
+	return complex(de/met4, mn/met4);
+
+}
+
+complex complex::operator*(const complex& a) {
+	complex help(de, mn);
+
+	help.de = de*a.de;
+	help.mn = mn*a.mn;
+
+
 	return help;
 }
 
-Matrix Matrix::operator*(const Matrix& a) const {
+complex complex::operator/(const complex& a) {
+	complex help(de, mn);
 
-	Matrix help(row, col);
+	help.de = de/a.de;
+	help.mn = mn/a.mn;
 
 
-	for (int i = 0; i < row; i++) {
-		for (int j = 0; j < col; j++) {
-			help.mas[i][j] = 0;
-			for (int k = 0; k < col; k++) {
-				help.mas[i][j] += mas[i][k] * a.mas[k][j];
-			}
-		}
-	}
 	return help;
 }
 
-int Matrix::rows() {
-	return row;
+complex complex::operator+=(const complex& a) {
+
+
+	de += a.de;
+	mn += a.mn;
+
+
+	return complex(de,mn);
 }
 
-int Matrix::columns() {
-	return col;
+complex complex::operator-=(const complex& a) {
+
+
+	de -= a.de;
+	mn -= a.mn;
+
+
+	return complex(de, mn);
 }
 
-int Matrix::Element(int i, int j)
-        {
-            if (i<row && j<col)
-                return mas[i][j];
-            else
-                cout << "Error: 1";
-        }
+complex complex::operator*=(const complex& a) {
 
-bool Matrix::operator==(const Matrix& m) const
-{
-	if (row != m.row || col != m.col)
-	{
+
+	de *= a.de;
+	mn *= a.mn;
+
+
+	return complex(de, mn);
+}
+
+complex complex::operator/=(const complex& a) {
+
+
+	de *= a.de;
+	mn *= a.mn;
+
+
+	return complex(de, mn);
+}
+
+complex complex::operator=(const complex& a) {
+
+
+	de = a.de;
+	mn = a.mn;
+
+
+	return complex(de, mn);
+}
+
+bool complex::operator==(const complex& a) {
+	if ((de == a.de) && (mn == a.mn)) {
+		return true;
+	}
+	else {
 		return false;
 	}
-	else
-	{
-		for (int i = 0; i < row; i++)
-		{
-			for (int j = 0; j < col; j++)
-			{
-		
-				if (mas[i][j] != m.mas[i][j])
-				{
-					return false;
-				}
-			}
-		}
-	}
-	return true;
-}
 
-Matrix Matrix::operator=(const Matrix& a) const
-{
-	for (int i = 0; i < row; i++)
-	{
-		for (int j = 0; j < col; j++)
-		{
-			mas[i][j] = a.mas[i][j];
-		}
-	}
-	return *this;
-}
-
+} 
