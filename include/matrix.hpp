@@ -1,25 +1,28 @@
-#include <fstream>
 #include <iostream>
 
 using namespace std;
 
-class Matrix {
+class complex {
 
 private:
-	int row, col, **mas;
+	double de, mn; // действительная и мнимая части
 public:
-	Matrix(int length = 4);
-	Matrix(int, int);
-	Matrix(const Matrix&);
-	
-        int Element(int i, int j);
-	~Matrix();
-	void fill(const char*);
-	void show() const;
-	int rows();
-	int columns();
-	Matrix operator+(const Matrix&) const;
-	Matrix operator*(const Matrix&) const;
-	bool operator==(const Matrix&) const;
-	Matrix operator=(const Matrix& x) const;
-};
+	complex() {};
+	complex(double a, double b) {
+		de = a;
+		mn = b;
+	}
+	~complex() {};
+	void Print(ostream&cout) const;
+	complex add(complex const & met1) const;
+	complex sub(complex const & met2) const;
+	complex Proizv(int met3)const;
+	complex Chast(int met4) const;
+	complex operator*(const complex&);
+	complex operator/(const complex&);
+	complex operator+=(const complex&);
+	complex operator-=(const complex&);
+	complex operator*=(const complex&);
+	complex operator/=(const complex&);
+	complex operator=(const complex&);
+	bool operator==(const complex&);
