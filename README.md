@@ -1,7 +1,6 @@
 # matrix
 
-[![Build Status](https://travis-ci.org/justcppdeveloper/matrix.svg?branch=master)](https://travis-ci.org/justcppdeveloper/matrix)
-
+[![Build Status](https://travis-ci.org/Bozey98/Complex_t.svg?branch=master)](https://travis-ci.org/Bozey98/Complex_t)
 matrix methods:
 - [x] rows
 - [x] columns
