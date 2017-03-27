@@ -1,5 +1,10 @@
 #include "complexh.hpp"
 
+complex::complex() {
+	de = 0;
+	mn = 0;
+}
+
 void complex::Print(ostream&out) const {
 
 	out << de << " + " << mn << "i" << endl;
@@ -34,24 +39,15 @@ complex complex::Chast(int met4) const{
 
 }
 
-complex complex::operator*(const complex& a) {
-	complex help(de, mn);
+complex complex::operator*(const complex& a) const {
 
-	help.de = de*a.de;
-	help.mn = mn*a.mn;
-
-
-	return help;
+	return complex(de*a.de - mn*a.mn, de*a.mn + mn*a.de);
 }
 
-complex complex::operator/(const complex& a) {
-	complex help(de, mn);
+complex complex::operator/(const complex& a) const {
 
-	help.de = de/a.de;
-	help.mn = mn/a.mn;
-
-
-	return help;
+	return complex((de*a.de + mn*a.mn) / (a.de*a.de + a.mn*a.mn),
+		(a.de*mn - de*a.mn) / (a.de*a.de + a.mn * a.mn));
 }
 
 complex complex::operator+=(const complex& a) {
@@ -77,21 +73,24 @@ complex complex::operator-=(const complex& a) {
 complex complex::operator*=(const complex& a) {
 
 
-	de *= a.de;
-	mn *= a.mn;
+	double help = de;
+	help = de*a.de - mn*a.mn;
+	mn = de*a.mn + mn*a.de;
+	de = help;
 
 
-	return complex(de, mn);
+	return *this;
 }
 
 complex complex::operator/=(const complex& a) {
 
+	double help = de;
+	help = (de*a.de + mn*a.mn) / (a.de*a.de + a.mn*a.mn);
+	mn = (a.de*mn - de*a.mn) / (a.de*a.de + a.mn * a.mn);
+	de = help;
 
-	de *= a.de;
-	mn *= a.mn;
 
-
-	return complex(de, mn);
+	return *this;
 }
 
 complex complex::operator=(const complex& a) {
@@ -101,10 +100,10 @@ complex complex::operator=(const complex& a) {
 	mn = a.mn;
 
 
-	return complex(de, mn);
+	return *this;
 }
 
-bool complex::operator==(const complex& a) {
+bool complex::operator==(const complex& a) const {
 	if ((de == a.de) && (mn == a.mn)) {
 		return true;
 	}
@@ -113,3 +112,18 @@ bool complex::operator==(const complex& a) {
 	}
 
 } 
+   
+istream& operator >> (std::istream& is, complex& a)
+{
+	cout << "Введите действительную часть" << endl;
+	is >> a.de;
+	cout << "Введите мнимую часть" << endl;
+	is >> a.mn;
+	
+	return is;
+}
+ostream& operator<< (std::ostream& os, const complex& a)
+{
+	a.Print(os);
+	return os;
+}
