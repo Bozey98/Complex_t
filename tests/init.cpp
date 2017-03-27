@@ -39,10 +39,6 @@ SCENARIO ("Chast", "[Cha]") {
 	REQUIRE(b.mnim() == 1);
 }
 
-SCENARIO("complex sum", "[sum]") {
-	complex a(1,1),b(2,2),c(3,3);
-	REQUIRE(a.add(b) ==c);
-}
 
 SCENARIO("operator *", "[op*]") {
 	complex a(1,1),b(2,2),c(-3,4);
