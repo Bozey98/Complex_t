@@ -41,13 +41,13 @@ SCENARIO ("Chast", "[Cha]") {
 
 
 SCENARIO("operator *", "[op*]") {
-	complex a(1,1),b(2,2),c(1,1);
+	complex a(1,1),b(2,2),c(0,4);
 	
 	REQUIRE((a*b)==c);
 }
 
 SCENARIO("operator /", "[op/]") {
-	complex a(4,7),b(3,1),c(4,7);
+	complex a(4,7),b(3,1),c(1.9,1.7);
 	
 	REQUIRE((a/b)==c);
 }
