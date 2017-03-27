@@ -1,4 +1,4 @@
-# matrix
+# Complex
 
 [![Build Status](https://travis-ci.org/Bozey98/Complex_t.svg?branch=master)](https://travis-ci.org/Bozey98/Complex_t)
 matrix methods:
