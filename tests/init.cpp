@@ -67,9 +67,9 @@ SCENARIO("operator ==", "[op==]") {
 	REQUIRE(a==b);
 }
 
-SCENARIO("operator *=", "[op*]") {
+SCENARIO("operator *=", "[op*=]") {
 	complex a(1,1),b(2,2),c(-3,4);
-	a=*b;
+	a*=b;
 	REQUIRE(a==c);
 }
 
