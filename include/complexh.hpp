@@ -13,6 +13,8 @@ public:
 		mn = b;
 	}
 	~complex() {};
+	double deist();
+	double mnim();
 	void Print(ostream&cout) const;
 	complex add(complex const & met1) const;
 	complex sub(complex const & met2) const;
