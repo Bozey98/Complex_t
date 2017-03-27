@@ -127,3 +127,13 @@ ostream& operator<< (std::ostream& os, const complex& a)
 	a.Print(os);
 	return os;
 }
+
+double complex::deist() {
+	return de;
+}
+
+double complex::mnim() {
+	return mn;
+}
+
+
