@@ -7,7 +7,7 @@ SCENARIO("complex init without parametrs", "[init wp]") {
 	REQUIRE(h.mnim() == 0);
 }
 
-SCENARIO("complex init  parametrs", "[ wp]") {
+SCENARIO("complex init  parametrs", "[wp]") {
 	complex h(3,3);
 	REQUIRE(h.deist() == 3);
 	REQUIRE(h.mnim() == 3);
